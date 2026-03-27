@@ -1,17 +1,45 @@
 aid: cortex
 name: Cortex
 description: >-
-  Cortex provides API capabilities.
+  Cortex is an internal developer portal that helps engineering teams catalog
+  services, enforce standards with scorecards, and improve service quality
+  across their organization.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Developer Experience
+  - Internal Developer Portal
+  - Service Catalog
+  - Scorecards
 url: >-
   https://raw.githubusercontent.com/api-evangelist/cortex/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-03-16'
+modified: '2026-03-27'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: cortex:cortex
+    name: Cortex
+    description: >-
+      Cortex is an internal developer portal that helps engineering teams
+      catalog services, enforce standards with scorecards, and improve service
+      quality across their organization.
+    humanURL: https://www.cortex.io
+    tags:
+      - Developer Experience
+      - Internal Developer Portal
+      - Service Catalog
+    properties:
+      - type: Documentation
+        url: https://docs.cortex.io
+      - type: Getting Started
+        url: https://docs.cortex.io/docs/getting-started
+common:
+  - type: Website
+    url: https://www.cortex.io
+  - type: Documentation
+    url: https://docs.cortex.io
+  - type: GitHub Organization
+    url: https://github.com/cortexapps
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com

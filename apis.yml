@@ -9,8 +9,8 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Developer Experience
   - Internal Developer Portal
-  - Service Catalog
   - Scorecards
+  - Service Catalog
 url: >-
   https://raw.githubusercontent.com/api-evangelist/cortex/refs/heads/main/apis.yml
 created: '2026-03-16'

@@ -1,0 +1,334 @@
+openapi: 3.1.0
+info:
+  title: Cortex REST API
+  version: "1.0"
+  description: >-
+    Minimal OpenAPI description of the Cortex REST API covering catalog
+    entities, scorecards, and teams. Generated from Cortex public
+    documentation.
+  x-generated-from: https://docs.cortex.io/
+  x-generated-by: claude-crawl-2026-05-08
+servers:
+  - url: https://api.getcortexapp.com
+    description: Cortex API
+security:
+  - bearerAuth: []
+tags:
+  - name: Catalog
+  - name: Scorecards
+  - name: Teams
+paths:
+  /api/v1/catalog:
+    get:
+      tags: [Catalog]
+      summary: List catalog entities
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags: [Catalog]
+      summary: Delete entities by type
+      responses:
+        "204":
+          description: No Content
+  /api/v1/catalog/descriptors:
+    get:
+      tags: [Catalog]
+      summary: List entity descriptors
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/catalog/{tagOrId}:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    get:
+      tags: [Catalog]
+      summary: Retrieve entity details
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags: [Catalog]
+      summary: Delete an entity
+      responses:
+        "204":
+          description: No Content
+  /api/v1/catalog/{tagOrId}/openapi:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    get:
+      tags: [Catalog]
+      summary: Retrieve entity OpenAPI descriptor
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/catalog/{tagOrId}/scorecards:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    get:
+      tags: [Catalog, Scorecards]
+      summary: Retrieve scorecard scores for an entity
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/catalog/{tagOrId}/archive:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags: [Catalog]
+      summary: Archive an entity
+      responses:
+        "200":
+          description: OK
+  /api/v1/catalog/{tagOrId}/unarchive:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags: [Catalog]
+      summary: Unarchive an entity
+      responses:
+        "200":
+          description: OK
+  /api/v1/open-api:
+    post:
+      tags: [Catalog]
+      summary: Create or update entity from OpenAPI descriptor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: OK
+    patch:
+      tags: [Catalog]
+      summary: Patch entity from OpenAPI descriptor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: OK
+  /api/v1/scorecards:
+    get:
+      tags: [Scorecards]
+      summary: List scorecards
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/{tag}:
+    parameters:
+      - $ref: '#/components/parameters/Tag'
+    get:
+      tags: [Scorecards]
+      summary: Retrieve a scorecard
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags: [Scorecards]
+      summary: Delete a scorecard
+      responses:
+        "204":
+          description: No Content
+  /api/v1/scorecards/{tag}/scores:
+    parameters:
+      - $ref: '#/components/parameters/Tag'
+    get:
+      tags: [Scorecards]
+      summary: Retrieve scorecard scores
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/{tag}/descriptor:
+    parameters:
+      - $ref: '#/components/parameters/Tag'
+    get:
+      tags: [Scorecards]
+      summary: Retrieve scorecard descriptor
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/{tag}/next-steps:
+    parameters:
+      - $ref: '#/components/parameters/Tag'
+    get:
+      tags: [Scorecards]
+      summary: Retrieve scorecard next steps
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/descriptor:
+    post:
+      tags: [Scorecards]
+      summary: Create or update scorecard from descriptor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: OK
+  /api/v1/teams:
+    get:
+      tags: [Teams]
+      summary: List teams
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags: [Teams]
+      summary: Create a team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "201":
+          description: Created
+    put:
+      tags: [Teams]
+      summary: Update teams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags: [Teams]
+      summary: Delete teams
+      responses:
+        "204":
+          description: No Content
+  /api/v1/teams/{tagOrId}:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    get:
+      tags: [Teams]
+      summary: Retrieve a team
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      tags: [Teams]
+      summary: Update a team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags: [Teams]
+      summary: Delete a team
+      responses:
+        "204":
+          description: No Content
+  /api/v1/teams/{tagOrId}/members:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags: [Teams]
+      summary: Update team members
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: OK
+  /api/v1/teams/{tagOrId}/archive:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags: [Teams]
+      summary: Archive a team
+      responses:
+        "200":
+          description: OK
+  /api/v1/teams/{tagOrId}/unarchive:
+    parameters:
+      - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags: [Teams]
+      summary: Unarchive a team
+      responses:
+        "200":
+          description: OK
+components:
+  parameters:
+    TagOrId:
+      name: tagOrId
+      in: path
+      required: true
+      schema:
+        type: string
+    Tag:
+      name: tag
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

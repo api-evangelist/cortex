@@ -51,6 +51,8 @@ apis:
         url: https://docs.cortex.io/docs/getting-started
       - type: APIReference
         url: https://docs.cortex.io/reference
+      - type: OpenAPI
+        url: openapi/cortex-openapi.yml
     tags:
       - Catalog
       - Dependencies

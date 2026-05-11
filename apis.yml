@@ -106,6 +106,22 @@ common:
     url: https://twitter.com/cortexapp
   - type: Contact
     url: https://www.cortex.io/contact
+integrations:
+  - name: Logo
+  - name: Social
+  - name: YC
+  - name: SOC Type 2 Certified
+  - name: 'ISO/IEC 27001:2022 Certified'
+  - name: Apiiro
+  - name: ArgoCD
+  - name: AWS
+  - name: Azure Active Directory
+  - name: Azure DevOps
+  - name: Azure Resources
+  - name: BambooHR
+  - name: Bitbucket
+  - name: Bugsnag
+  - name: Buildkite
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

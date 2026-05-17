@@ -1,6 +1,6 @@
 aid: cortex
 name: Cortex
-x-type: company
+kind: company
 description: >-
   Cortex is an Engineering Operations (EngOps) platform and internal developer
   portal that helps engineering teams catalog services, enforce production
@@ -98,7 +98,7 @@ common:
     url: https://docs.cortex.io/docs/integrations
   - type: ChangeLog
     url: https://docs.cortex.io/changelog
-  - type: Status
+  - type: StatusPage
     url: https://status.cortex.io/
   - type: LinkedIn
     url: https://www.linkedin.com/company/cortexapp/

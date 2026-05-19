@@ -32,7 +32,7 @@ tags:
   - SRE
   - Workflows
 created: '2026-03-16'
-modified: '2026-04-28'
+modified: '2026-05-19'
 specificationVersion: '0.20'
 apis:
   - aid: cortex:cortex-rest-api
@@ -106,6 +106,9 @@ common:
     url: https://twitter.com/cortexapp
   - type: Contact
     url: https://www.cortex.io/contact
+  - name: MCP Server
+    url: https://github.com/cortexapps/cortex-mcp
+    type: MCPServer
 integrations:
   - name: Logo
   - name: Social

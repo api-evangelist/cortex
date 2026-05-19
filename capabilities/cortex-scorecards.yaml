@@ -1,0 +1,297 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cortex REST API — Scorecards
+  description: 'Cortex REST API — Scorecards. 8 operations. Lead operation: Retrieve scorecard scores for an entity. Self-contained
+    Naftiko capability covering one Cortex business surface.'
+  tags:
+  - Cortex
+  - Scorecards
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CORTEX_API_KEY: CORTEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cortex-scorecards
+    baseUri: https://api.getcortexapp.com
+    description: Cortex REST API — Scorecards business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-catalog-tagOrId-scorecards
+      path: /api/v1/catalog/{tagOrId}/scorecards
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve scorecard scores for an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-scorecards
+      path: /api/v1/scorecards
+      operations:
+      - name: get
+        method: GET
+        description: List scorecards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-scorecards-descriptor
+      path: /api/v1/scorecards/descriptor
+      operations:
+      - name: post
+        method: POST
+        description: Create or update scorecard from descriptor
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v1-scorecards-tag
+      path: /api/v1/scorecards/{tag}
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve a scorecard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete
+        method: DELETE
+        description: Delete a scorecard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-scorecards-tag-descriptor
+      path: /api/v1/scorecards/{tag}/descriptor
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve scorecard descriptor
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-scorecards-tag-next-steps
+      path: /api/v1/scorecards/{tag}/next-steps
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve scorecard next steps
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-scorecards-tag-scores
+      path: /api/v1/scorecards/{tag}/scores
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve scorecard scores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CORTEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cortex-scorecards-rest
+    port: 8080
+    description: REST adapter for Cortex REST API — Scorecards. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/catalog/{tagorid}/scorecards
+      name: api-v1-catalog-tagorid-scorecards
+      description: REST surface for api-v1-catalog-tagOrId-scorecards.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve scorecard scores for an entity
+        call: cortex-scorecards.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/scorecards
+      name: api-v1-scorecards
+      description: REST surface for api-v1-scorecards.
+      operations:
+      - method: GET
+        name: get
+        description: List scorecards
+        call: cortex-scorecards.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/scorecards/descriptor
+      name: api-v1-scorecards-descriptor
+      description: REST surface for api-v1-scorecards-descriptor.
+      operations:
+      - method: POST
+        name: post
+        description: Create or update scorecard from descriptor
+        call: cortex-scorecards.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/scorecards/{tag}
+      name: api-v1-scorecards-tag
+      description: REST surface for api-v1-scorecards-tag.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve a scorecard
+        call: cortex-scorecards.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete a scorecard
+        call: cortex-scorecards.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/scorecards/{tag}/descriptor
+      name: api-v1-scorecards-tag-descriptor
+      description: REST surface for api-v1-scorecards-tag-descriptor.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve scorecard descriptor
+        call: cortex-scorecards.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/scorecards/{tag}/next-steps
+      name: api-v1-scorecards-tag-next-steps
+      description: REST surface for api-v1-scorecards-tag-next-steps.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve scorecard next steps
+        call: cortex-scorecards.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/scorecards/{tag}/scores
+      name: api-v1-scorecards-tag-scores
+      description: REST surface for api-v1-scorecards-tag-scores.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve scorecard scores
+        call: cortex-scorecards.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cortex-scorecards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cortex REST API — Scorecards. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: retrieve-scorecard-scores-entity
+      description: Retrieve scorecard scores for an entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-scorecards.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-scorecards
+      description: List scorecards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-scorecards.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-scorecard-descriptor
+      description: Create or update scorecard from descriptor
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-scorecards.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-scorecard
+      description: Retrieve a scorecard
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-scorecards.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-scorecard
+      description: Delete a scorecard
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cortex-scorecards.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-scorecard-descriptor
+      description: Retrieve scorecard descriptor
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-scorecards.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-scorecard-next-steps
+      description: Retrieve scorecard next steps
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-scorecards.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-scorecard-scores
+      description: Retrieve scorecard scores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-scorecards.get
+      outputParameters:
+      - type: object
+        mapping: $.

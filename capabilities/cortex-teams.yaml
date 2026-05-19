@@ -1,0 +1,363 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cortex REST API — Teams
+  description: 'Cortex REST API — Teams. 10 operations. Lead operation: List teams. Self-contained Naftiko capability covering
+    one Cortex business surface.'
+  tags:
+  - Cortex
+  - Teams
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CORTEX_API_KEY: CORTEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cortex-teams
+    baseUri: https://api.getcortexapp.com
+    description: Cortex REST API — Teams business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-teams
+      path: /api/v1/teams
+      operations:
+      - name: get
+        method: GET
+        description: List teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: put
+        method: PUT
+        description: Update teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: delete
+        method: DELETE
+        description: Delete teams
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-teams-tagOrId
+      path: /api/v1/teams/{tagOrId}
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: put
+        method: PUT
+        description: Update a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: delete
+        method: DELETE
+        description: Delete a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-teams-tagOrId-archive
+      path: /api/v1/teams/{tagOrId}/archive
+      operations:
+      - name: put
+        method: PUT
+        description: Archive a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-teams-tagOrId-members
+      path: /api/v1/teams/{tagOrId}/members
+      operations:
+      - name: put
+        method: PUT
+        description: Update team members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v1-teams-tagOrId-unarchive
+      path: /api/v1/teams/{tagOrId}/unarchive
+      operations:
+      - name: put
+        method: PUT
+        description: Unarchive a team
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CORTEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cortex-teams-rest
+    port: 8080
+    description: REST adapter for Cortex REST API — Teams. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/teams
+      name: api-v1-teams
+      description: REST surface for api-v1-teams.
+      operations:
+      - method: GET
+        name: get
+        description: List teams
+        call: cortex-teams.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a team
+        call: cortex-teams.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update teams
+        call: cortex-teams.put
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete teams
+        call: cortex-teams.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/teams/{tagorid}
+      name: api-v1-teams-tagorid
+      description: REST surface for api-v1-teams-tagOrId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve a team
+        call: cortex-teams.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Update a team
+        call: cortex-teams.put
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete a team
+        call: cortex-teams.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/teams/{tagorid}/archive
+      name: api-v1-teams-tagorid-archive
+      description: REST surface for api-v1-teams-tagOrId-archive.
+      operations:
+      - method: PUT
+        name: put
+        description: Archive a team
+        call: cortex-teams.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/teams/{tagorid}/members
+      name: api-v1-teams-tagorid-members
+      description: REST surface for api-v1-teams-tagOrId-members.
+      operations:
+      - method: PUT
+        name: put
+        description: Update team members
+        call: cortex-teams.put
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/teams/{tagorid}/unarchive
+      name: api-v1-teams-tagorid-unarchive
+      description: REST surface for api-v1-teams-tagOrId-unarchive.
+      operations:
+      - method: PUT
+        name: put
+        description: Unarchive a team
+        call: cortex-teams.put
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cortex-teams-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cortex REST API — Teams. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-teams
+      description: List teams
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-teams.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-team
+      description: Create a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-teams.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-teams
+      description: Update teams
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-teams.put
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-teams
+      description: Delete teams
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cortex-teams.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-team
+      description: Retrieve a team
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-teams.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-team
+      description: Update a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-teams.put
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-team
+      description: Delete a team
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cortex-teams.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: archive-team
+      description: Archive a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-teams.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-team-members
+      description: Update team members
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-teams.put
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unarchive-team
+      description: Unarchive a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-teams.put
+      outputParameters:
+      - type: object
+        mapping: $.

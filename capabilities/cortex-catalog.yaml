@@ -1,0 +1,389 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Cortex REST API — Catalog
+  description: 'Cortex REST API — Catalog. 11 operations. Lead operation: List catalog entities. Self-contained Naftiko capability
+    covering one Cortex business surface.'
+  tags:
+  - Cortex
+  - Catalog
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CORTEX_API_KEY: CORTEX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cortex-catalog
+    baseUri: https://api.getcortexapp.com
+    description: Cortex REST API — Catalog business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-catalog
+      path: /api/v1/catalog
+      operations:
+      - name: get
+        method: GET
+        description: List catalog entities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete
+        method: DELETE
+        description: Delete entities by type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-catalog-descriptors
+      path: /api/v1/catalog/descriptors
+      operations:
+      - name: get
+        method: GET
+        description: List entity descriptors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-catalog-tagOrId
+      path: /api/v1/catalog/{tagOrId}
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve entity details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete
+        method: DELETE
+        description: Delete an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-catalog-tagOrId-archive
+      path: /api/v1/catalog/{tagOrId}/archive
+      operations:
+      - name: put
+        method: PUT
+        description: Archive an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-catalog-tagOrId-openapi
+      path: /api/v1/catalog/{tagOrId}/openapi
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve entity OpenAPI descriptor
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-catalog-tagOrId-scorecards
+      path: /api/v1/catalog/{tagOrId}/scorecards
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve scorecard scores for an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-catalog-tagOrId-unarchive
+      path: /api/v1/catalog/{tagOrId}/unarchive
+      operations:
+      - name: put
+        method: PUT
+        description: Unarchive an entity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-open-api
+      path: /api/v1/open-api
+      operations:
+      - name: post
+        method: POST
+        description: Create or update entity from OpenAPI descriptor
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: patch
+        method: PATCH
+        description: Patch entity from OpenAPI descriptor
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.CORTEX_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cortex-catalog-rest
+    port: 8080
+    description: REST adapter for Cortex REST API — Catalog. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v1/catalog
+      name: api-v1-catalog
+      description: REST surface for api-v1-catalog.
+      operations:
+      - method: GET
+        name: get
+        description: List catalog entities
+        call: cortex-catalog.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete entities by type
+        call: cortex-catalog.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/catalog/descriptors
+      name: api-v1-catalog-descriptors
+      description: REST surface for api-v1-catalog-descriptors.
+      operations:
+      - method: GET
+        name: get
+        description: List entity descriptors
+        call: cortex-catalog.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/catalog/{tagorid}
+      name: api-v1-catalog-tagorid
+      description: REST surface for api-v1-catalog-tagOrId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve entity details
+        call: cortex-catalog.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Delete an entity
+        call: cortex-catalog.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/catalog/{tagorid}/archive
+      name: api-v1-catalog-tagorid-archive
+      description: REST surface for api-v1-catalog-tagOrId-archive.
+      operations:
+      - method: PUT
+        name: put
+        description: Archive an entity
+        call: cortex-catalog.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/catalog/{tagorid}/openapi
+      name: api-v1-catalog-tagorid-openapi
+      description: REST surface for api-v1-catalog-tagOrId-openapi.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve entity OpenAPI descriptor
+        call: cortex-catalog.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/catalog/{tagorid}/scorecards
+      name: api-v1-catalog-tagorid-scorecards
+      description: REST surface for api-v1-catalog-tagOrId-scorecards.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve scorecard scores for an entity
+        call: cortex-catalog.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/catalog/{tagorid}/unarchive
+      name: api-v1-catalog-tagorid-unarchive
+      description: REST surface for api-v1-catalog-tagOrId-unarchive.
+      operations:
+      - method: PUT
+        name: put
+        description: Unarchive an entity
+        call: cortex-catalog.put
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v1/open-api
+      name: api-v1-open-api
+      description: REST surface for api-v1-open-api.
+      operations:
+      - method: POST
+        name: post
+        description: Create or update entity from OpenAPI descriptor
+        call: cortex-catalog.post
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Patch entity from OpenAPI descriptor
+        call: cortex-catalog.patch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cortex-catalog-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Cortex REST API — Catalog. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-catalog-entities
+      description: List catalog entities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-entities-type
+      description: Delete entities by type
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cortex-catalog.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-entity-descriptors
+      description: List entity descriptors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-entity-details
+      description: Retrieve entity details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-entity
+      description: Delete an entity
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: cortex-catalog.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: archive-entity
+      description: Archive an entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-entity-openapi-descriptor
+      description: Retrieve entity OpenAPI descriptor
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-scorecard-scores-entity
+      description: Retrieve scorecard scores for an entity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unarchive-entity
+      description: Unarchive an entity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.put
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-entity-openapi-descriptor
+      description: Create or update entity from OpenAPI descriptor
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cortex-catalog.post
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-entity-openapi-descriptor
+      description: Patch entity from OpenAPI descriptor
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: cortex-catalog.patch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

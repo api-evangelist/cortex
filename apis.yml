@@ -105,6 +105,8 @@ common:
 - name: MCP Server
   url: https://github.com/cortexapps/cortex-mcp
   type: MCPServer
+- type: LLMsTxt
+  url: https://docs.cortex.io/llms.txt
 integrations:
 - name: Logo
 - name: Social

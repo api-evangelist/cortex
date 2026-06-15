@@ -1,0 +1,495 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cortex REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List catalog entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/catalog"
+          },
+          "docs": "List catalog entities"
+        },
+        {
+          "info": {
+            "name": "Delete entities by type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getcortexapp.com/api/v1/catalog"
+          },
+          "docs": "Delete entities by type"
+        },
+        {
+          "info": {
+            "name": "List entity descriptors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/descriptors"
+          },
+          "docs": "List entity descriptors"
+        },
+        {
+          "info": {
+            "name": "Retrieve entity details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/:tagOrId",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve entity details"
+        },
+        {
+          "info": {
+            "name": "Delete an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/:tagOrId",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an entity"
+        },
+        {
+          "info": {
+            "name": "Retrieve entity OpenAPI descriptor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/:tagOrId/openapi",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve entity OpenAPI descriptor"
+        },
+        {
+          "info": {
+            "name": "Retrieve scorecard scores for an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/:tagOrId/scorecards",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve scorecard scores for an entity"
+        },
+        {
+          "info": {
+            "name": "Archive an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/:tagOrId/archive",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive an entity"
+        },
+        {
+          "info": {
+            "name": "Unarchive an entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/catalog/:tagOrId/unarchive",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unarchive an entity"
+        },
+        {
+          "info": {
+            "name": "Create or update entity from OpenAPI descriptor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getcortexapp.com/api/v1/open-api",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update entity from OpenAPI descriptor"
+        },
+        {
+          "info": {
+            "name": "Patch entity from OpenAPI descriptor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.getcortexapp.com/api/v1/open-api",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch entity from OpenAPI descriptor"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scorecards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List scorecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards"
+          },
+          "docs": "List scorecards"
+        },
+        {
+          "info": {
+            "name": "Retrieve a scorecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards/:tag",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a scorecard"
+        },
+        {
+          "info": {
+            "name": "Delete a scorecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards/:tag",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a scorecard"
+        },
+        {
+          "info": {
+            "name": "Retrieve scorecard scores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards/:tag/scores",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve scorecard scores"
+        },
+        {
+          "info": {
+            "name": "Retrieve scorecard descriptor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards/:tag/descriptor",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve scorecard descriptor"
+        },
+        {
+          "info": {
+            "name": "Retrieve scorecard next steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards/:tag/next-steps",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve scorecard next steps"
+        },
+        {
+          "info": {
+            "name": "Create or update scorecard from descriptor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getcortexapp.com/api/v1/scorecards/descriptor",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update scorecard from descriptor"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/teams"
+          },
+          "docs": "List teams"
+        },
+        {
+          "info": {
+            "name": "Create a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getcortexapp.com/api/v1/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a team"
+        },
+        {
+          "info": {
+            "name": "Update teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update teams"
+        },
+        {
+          "info": {
+            "name": "Delete teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getcortexapp.com/api/v1/teams"
+          },
+          "docs": "Delete teams"
+        },
+        {
+          "info": {
+            "name": "Retrieve a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getcortexapp.com/api/v1/teams/:tagOrId",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a team"
+        },
+        {
+          "info": {
+            "name": "Update a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/teams/:tagOrId",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a team"
+        },
+        {
+          "info": {
+            "name": "Delete a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getcortexapp.com/api/v1/teams/:tagOrId",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a team"
+        },
+        {
+          "info": {
+            "name": "Update team members",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/teams/:tagOrId/members",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update team members"
+        },
+        {
+          "info": {
+            "name": "Archive a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/teams/:tagOrId/archive",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archive a team"
+        },
+        {
+          "info": {
+            "name": "Unarchive a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getcortexapp.com/api/v1/teams/:tagOrId/unarchive",
+            "params": [
+              {
+                "name": "tagOrId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unarchive a team"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -78,7 +78,7 @@ common:
     url: https://www.cortex.io/product/service-catalog
   - type: Scorecards
     url: https://www.cortex.io/product/scorecards
-  - type: Workflows
+  - type: Workflow
     url: https://www.cortex.io/product/workflows
   - type: Pricing
     url: https://www.cortex.io/pricing
@@ -103,7 +103,7 @@ common:
   - name: MCP Server
     url: https://github.com/cortexapps/cortex-mcp
     type: MCPServer
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.cortex.io/llms.txt
 integrations:
   - name: Logo

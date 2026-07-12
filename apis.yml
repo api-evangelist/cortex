@@ -68,6 +68,10 @@ apis:
       - IDE
       - MCP
 common:
+  - type: DomainSecurity
+    url: security/cortex-domain-security.yml
+  - type: Authentication
+    url: authentication/cortex-authentication.yml
   - type: Website
     url: https://www.cortex.io/
   - type: Documentation

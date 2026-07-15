@@ -68,6 +68,8 @@ apis:
       - IDE
       - MCP
 common:
+  - type: AgenticAccess
+    url: agentic-access/cortex-agentic-access.yml
   - type: DomainSecurity
     url: security/cortex-domain-security.yml
   - type: Authentication

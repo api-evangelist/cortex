@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: Cortex REST Catalog Scorecards API
+  version: '1.0'
+  description: Minimal OpenAPI description of the Cortex REST API covering catalog entities, scorecards, and teams. Generated from Cortex public documentation.
+  x-generated-from: https://docs.cortex.io/
+  x-generated-by: claude-crawl-2026-05-08
+servers:
+- url: https://api.getcortexapp.com
+  description: Cortex API
+security:
+- bearerAuth: []
+tags:
+- name: Scorecards
+paths:
+  /api/v1/catalog/{tagOrId}/scorecards:
+    parameters:
+    - $ref: '#/components/parameters/TagOrId'
+    get:
+      tags:
+      - Scorecards
+      summary: Retrieve scorecard scores for an entity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards:
+    get:
+      tags:
+      - Scorecards
+      summary: List scorecards
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/{tag}:
+    parameters:
+    - $ref: '#/components/parameters/Tag'
+    get:
+      tags:
+      - Scorecards
+      summary: Retrieve a scorecard
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      tags:
+      - Scorecards
+      summary: Delete a scorecard
+      responses:
+        '204':
+          description: No Content
+  /api/v1/scorecards/{tag}/scores:
+    parameters:
+    - $ref: '#/components/parameters/Tag'
+    get:
+      tags:
+      - Scorecards
+      summary: Retrieve scorecard scores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/{tag}/descriptor:
+    parameters:
+    - $ref: '#/components/parameters/Tag'
+    get:
+      tags:
+      - Scorecards
+      summary: Retrieve scorecard descriptor
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/{tag}/next-steps:
+    parameters:
+    - $ref: '#/components/parameters/Tag'
+    get:
+      tags:
+      - Scorecards
+      summary: Retrieve scorecard next steps
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/scorecards/descriptor:
+    post:
+      tags:
+      - Scorecards
+      summary: Create or update scorecard from descriptor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    Tag:
+      name: tag
+      in: path
+      required: true
+      schema:
+        type: string
+    TagOrId:
+      name: tagOrId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

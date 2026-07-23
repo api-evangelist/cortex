@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: Cortex REST Catalog Teams API
+  version: '1.0'
+  description: Minimal OpenAPI description of the Cortex REST API covering catalog entities, scorecards, and teams. Generated from Cortex public documentation.
+  x-generated-from: https://docs.cortex.io/
+  x-generated-by: claude-crawl-2026-05-08
+servers:
+- url: https://api.getcortexapp.com
+  description: Cortex API
+security:
+- bearerAuth: []
+tags:
+- name: Teams
+paths:
+  /api/v1/teams:
+    get:
+      tags:
+      - Teams
+      summary: List teams
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags:
+      - Teams
+      summary: Create a team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Created
+    put:
+      tags:
+      - Teams
+      summary: Update teams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+      - Teams
+      summary: Delete teams
+      responses:
+        '204':
+          description: No Content
+  /api/v1/teams/{tagOrId}:
+    parameters:
+    - $ref: '#/components/parameters/TagOrId'
+    get:
+      tags:
+      - Teams
+      summary: Retrieve a team
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+      - Teams
+      summary: Update a team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+      - Teams
+      summary: Delete a team
+      responses:
+        '204':
+          description: No Content
+  /api/v1/teams/{tagOrId}/members:
+    parameters:
+    - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags:
+      - Teams
+      summary: Update team members
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: OK
+  /api/v1/teams/{tagOrId}/archive:
+    parameters:
+    - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags:
+      - Teams
+      summary: Archive a team
+      responses:
+        '200':
+          description: OK
+  /api/v1/teams/{tagOrId}/unarchive:
+    parameters:
+    - $ref: '#/components/parameters/TagOrId'
+    put:
+      tags:
+      - Teams
+      summary: Unarchive a team
+      responses:
+        '200':
+          description: OK
+components:
+  parameters:
+    TagOrId:
+      name: tagOrId
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

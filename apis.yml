@@ -8,7 +8,20 @@ description: >-
   on-call, and SaaS tooling and exposes it through a REST API used to integrate the catalog with platform engineering
   and SRE workflows.
 url: https://raw.githubusercontent.com/api-evangelist/cortex/refs/heads/main/apis.yml
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cortex.png
 type: Index
 access: Public
 position: Provider
@@ -32,41 +45,65 @@ created: '2026-03-16'
 modified: '2026-05-19'
 specificationVersion: '0.20'
 apis:
-  - aid: cortex:cortex-rest-api
-    name: Cortex REST API
-    description: >-
-      The Cortex REST API exposes the service catalog, scorecards, initiatives, entity relationships and dependencies,
-      on-call assignments, custom data, and deployments managed in a Cortex workspace. Authentication is via personal or
-      service access tokens, and entity descriptors can be retrieved as OpenAPI documents through a per-entity endpoint.
-    humanURL: https://docs.cortex.io/
-    properties:
-      - type: Documentation
-        url: https://docs.cortex.io/
-      - type: GettingStarted
-        url: https://docs.cortex.io/docs/getting-started
-      - type: APIReference
-        url: https://docs.cortex.io/reference
-      - type: OpenAPI
-        url: openapi/cortex-openapi.yml
-    tags:
-      - Catalog
-      - Dependencies
-      - Deploys
-      - REST
-      - Scorecards
-  - aid: cortex:cortex-mcp
-    name: Cortex MCP Server
-    description: >-
-      Cortex exposes a Model Context Protocol (MCP) server that lets AI coding assistants and IDE agents query the
-      service catalog, look up ownership, check scorecard scores, and run workflows directly from developer tools.
-    humanURL: https://docs.cortex.io/
-    properties:
-      - type: Documentation
-        url: https://docs.cortex.io/
-    tags:
-      - AI
-      - IDE
-      - MCP
+- aid: cortex:cortex-mcp
+  name: Cortex MCP Server
+  description: >-
+    Cortex exposes a Model Context Protocol (MCP) server that lets AI coding assistants and IDE agents
+    query the service catalog, look up ownership, check scorecard scores, and run workflows directly from
+    developer tools.
+  humanURL: https://docs.cortex.io/
+  properties:
+  - type: Documentation
+    url: https://docs.cortex.io/
+  tags:
+  - AI
+  - IDE
+  - MCP
+- aid: cortex:cortex-catalog-api
+  name: Cortex Catalog API
+  description: The Catalog API from Cortex — 8 operation(s) for catalog.
+  humanURL: https://docs.cortex.io/
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/cortex-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cortex.io/
+  - type: GettingStarted
+    url: https://docs.cortex.io/docs/getting-started
+  - type: APIReference
+    url: https://docs.cortex.io/reference
+- aid: cortex:cortex-scorecards-api
+  name: Cortex Scorecards API
+  description: The Scorecards API from Cortex — 7 operation(s) for scorecards.
+  humanURL: https://docs.cortex.io/
+  tags:
+  - Scorecards
+  properties:
+  - type: OpenAPI
+    url: openapi/cortex-scorecards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cortex.io/
+  - type: GettingStarted
+    url: https://docs.cortex.io/docs/getting-started
+  - type: APIReference
+    url: https://docs.cortex.io/reference
+- aid: cortex:cortex-teams-api
+  name: Cortex Teams API
+  description: The Teams API from Cortex — 5 operation(s) for teams.
+  humanURL: https://docs.cortex.io/
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/cortex-teams-api-openapi.yml
+  - type: Documentation
+    url: https://docs.cortex.io/
+  - type: GettingStarted
+    url: https://docs.cortex.io/docs/getting-started
+  - type: APIReference
+    url: https://docs.cortex.io/reference
 common:
   - type: AgenticAccess
     url: agentic-access/cortex-agentic-access.yml
